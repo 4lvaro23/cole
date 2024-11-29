@@ -16,7 +16,6 @@ export default function Profile() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [visitCount, setVisitCount] = useState(0);
 
-  // Estados para formularios
   const [eventTitle, setEventTitle] = useState("");
   const [eventDescription, setEventDescription] = useState("");
   const [eventDate, setEventDate] = useState("");
@@ -70,7 +69,6 @@ export default function Profile() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      {/* Barra de Menú */}
       <header className="bg-[#66B5E5] dark:bg-gray-800 shadow-sm">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
     <div className="flex items-center">
@@ -149,7 +147,6 @@ export default function Profile() {
           </form>
         </div>
 
-        {/* Perfil del usuario */}
         <div className="bg-[#D5E7F2] p-8 rounded-xl shadow-lg w-1/3">
           <div className="flex justify-center mb-6">
             <Image
@@ -179,7 +176,6 @@ export default function Profile() {
           </button>
         </div>
 
-        {/* Formulario de Comunicados */}
         <div className="bg-white p-6 rounded-xl shadow-md w-1/3">
           <h2 className="text-xl font-semibold mb-4">Nuevo Comunicado</h2>
           <form onSubmit={handleComunicadoSubmit}>

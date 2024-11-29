@@ -74,20 +74,6 @@ export default function Home() {
                   Ingresar
                 </a>
               </li>
-              <li>
-                <a
-                  href="/perfil"
-                  className="text-white dark:text-gray-300 hover:text-[#BF1F2C] dark:hover:text-white font-bold"
-                >
-                <Image
-                  src="/perfil.png"
-                  alt="Perfil"
-                  width={18}
-                  height={18}
-                  className="rounded-full"
-                />
-                </a>
-              </li>
                 <button
               onClick={handleSearchToggle}
               className="text-white hover:text-[#BF1F2C] focus:outline-none"
