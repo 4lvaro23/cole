@@ -76,21 +76,14 @@ export default function InfografiaYHimnosPage() {
       </header>
 
       <main className="flex-grow">
-        {/* Sección de la infografía */}
         <section className="py-16 bg-[#D5E7F2] dark:bg-gray-800">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Image
-                src="/perfil.png"
-                alt="Infografía Institucional"
-                width={400}
-                height={200}
-                className="mx-auto"
-              />
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
               Biografia de Luis Ernesto Pinto Sotomayor.
             </h2>
-            <div className="text-center mb-8">
-              <p className="text-gray-600 dark:text-gray-300 mb-8 text-justify">
+            <div className="flex flex-col md:flex-row items-start">
+            <div className="md:w-2/3">
+              <p className="text-gray-600 dark:text-gray-300 mb-4  max-w-prose leading-relaxed text-justify">
               Nace el 08 de octubre de 1887 en la ciudad de Moquegua, 
               realizó sus estudios Secundarios en el Colegio Nacional “La Libertad”, 
               hoy Institución Educativa Emblemática “Simón Bolívar”; al terminar cursó sus 
@@ -104,19 +97,19 @@ export default function InfografiaYHimnosPage() {
               que posteriormente se denominó Escuela de 2do. grado de Varones Nº 971 hoy 
               Institución Educativa “Rafael Díaz”.
               </p>
-              <p className="text-gray-600 dark:text-gray-300 mb-8 text-justify">
+              <p className="text-gray-600 dark:text-gray-300 mb-4 text-justify max-w-prose leading-relaxed">
                En el año de 1930 le dan el cargo de Inspector Visitador de las provincias de 
                Tacna y Moquegua.  En 1940 por medio de un concurso y obtener una alta calificación
                le designan Inspector de Educación del departamento de Moquegua.
               </p>
-              <p className="text-gray-600 dark:text-gray-300 mb-8 text-justify">
+              <p className="text-gray-600 dark:text-gray-300 mb-4 text-justify max-w-prose leading-relaxed">
                  Durante sus años que trabajó como Educador, él encontró una Escuela que se dedicaba 
                  a transmitir conocimientos y a suministrar la lectura, escritura, el cálculo y 
                  ciertos instrumentos necesarios para la vida social “cuya preocupación fundamental 
                  es la formación de la personalidad humana, preparando al niño para todas las vicisitudes 
                  de la vida”.
               </p>
-              <p className="text-gray-600 dark:text-gray-300 mb-8 text-justify">
+              <p className="text-gray-600 dark:text-gray-300 mb-4 text-justify max-w-prose leading-relaxed">
                  Escribió las obras Organización Escolar, Plan de Estudios, Urbanidad.  En una de sus 
                  obras se inspiró en sus maestras Elena Hurtado de Solari y Victoria Solari, en las ideas 
                  de trabajo, rectitud, honestidad y lealtad aprendida de sus padres; unidas a la devoción 
@@ -126,14 +119,14 @@ export default function InfografiaYHimnosPage() {
                  comprensivo y armonioso; una cualidad que lo caracterizó era el espíritu de Tolerancia 
                  y Respeto para las ideas más opuestas”.
               </p>
-              <p className="text-gray-600 dark:text-gray-300 mb-8 text-justify">
+              <p className="text-gray-600 dark:text-gray-300 mb-4 text-justify max-w-prose leading-relaxed">
                  Al terminar sus servicios magisteriales dijo: “sois vosotros, discípulos de ayer, colegas 
                  de hoy y amigos de siempre, los jueces imparciales de mi obra”.  A los maestros dice: 
                  “La experiencia me vuelve a deciros que mantengáis unión estrecha, fraterna y solidaria 
                  a favor de la cultura de Moquegua, que vuestros esfuerzos cotidianos no se aminoricen un 
                  punto; que vuestro ejemplo sea un estímulo constante para vuestros discípulos agradecidos”.
               </p>
-              <p className="text-gray-600 dark:text-gray-300 mb-8 text-justify">
+              <p className="text-gray-600 dark:text-gray-300 mb-4 text-justify max-w-prose leading-relaxed">
                  En la incursión del periodismo fue Director del Seminario “Ferrocarril”, colaboró con la
                  “Voz Moqueguana”, “La Reforma” y el “Heraldo”. Durante la fecha del terremoto desempeñó 
                  el cargo de Alcalde de Moquegua en 1948.  En reconocimiento a su enseñanza fue obsequiado 
@@ -141,6 +134,16 @@ export default function InfografiaYHimnosPage() {
                  la Escuela Nº 971 que era presidida por Angela Barrios Vda. de Espinoza.  Posteriormente 
                  se retiró a radicar a Lima en donde falleció el 02 de junio de 1958.
               </p>
+              </div>
+              <div className="md:w-1/3 flex justify-center md:justify-end">
+              <Image
+                src="/perfil.png"
+                alt="Infografía Institucional"
+                width={1000}
+                height={1000}
+                className="rounded-lg shadow-md border-4 border-gray-300 dark:border-gray-600"
+              />
+            </div>
             </div>
           </div>
         </section>
@@ -167,9 +170,14 @@ export default function InfografiaYHimnosPage() {
                   El Himno Nacional del Perú es un símbolo patriótico que expresa
                   el amor y orgullo por nuestra nación.
                 </p>
-                <Button className="bg-[#3299D9] hover:bg-[#2477A8] text-white font-bold px-8 py-3 rounded-md shadow-lg">
-                  Ver Video
-                </Button>
+                <a
+                  href="https://www.youtube.com/watch?v=ESnv662T6qM"
+                  target="_blank"
+                   rel="noopener noreferrer"
+                   className="bg-[#3299D9] hover:bg-[#2477A8] text-white font-bold px-8 py-3 rounded-md shadow-lg text-center"
+                   >
+                    Ver Video
+                  </a>
               </div>
               <div className="text-center">
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">

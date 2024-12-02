@@ -1,6 +1,6 @@
 "use client";
 import { MobileMenu } from "@/components/mobile-menu";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
@@ -11,25 +11,21 @@ export default function Profile() {
     email: "luisernestopinto1954@gmail.com",
     avatar: "/perfil.png",
   };
-
-  const [messages, setMessages] = useState<string[]>([]);
+  const [messages, setMessages] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [visitCount, setVisitCount] = useState(0);
-
   const [eventTitle, setEventTitle] = useState("");
   const [eventDescription, setEventDescription] = useState("");
   const [eventDate, setEventDate] = useState("");
   const [eventMedia, setEventMedia] = useState<File | null>(null);
-
   const [comunicadoTitle, setComunicadoTitle] = useState("");
   const [comunicadoDescription, setComunicadoDescription] = useState("");
-  const [comunicadoDate, setComunicadotDate] = useState("");
+  const [comunicadoDate, setComunicadoDate] = useState("");
   const [comunicadoMedia, setComunicadoMedia] = useState<File | null>(null);
 
   useEffect(() => {
     const storedMessages = JSON.parse(localStorage.getItem("contactMessages") || "[]");
     setMessages(storedMessages);
-
     const currentVisitCount = parseInt(localStorage.getItem("visitCount") || "0", 10);
     setVisitCount(currentVisitCount);
     localStorage.setItem("visitCount", (currentVisitCount + 1).toString());
@@ -63,51 +59,72 @@ export default function Profile() {
       description: comunicadoDescription,
       media: comunicadoMedia ? URL.createObjectURL(comunicadoMedia) : null,
     };
-    localStorage.setItem("comunicados", JSON.stringify([...comunicados, newComunicado]));
+    localStorage.setItem("comunicados", JSON.stringify([comunicados, newComunicado]));
     router.push("/comunicados");
+  };
+
+  const handleMessageSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const name = (document.getElementById("name") as HTMLInputElement).value;
+    const lastName = (document.getElementById("lastName") as HTMLInputElement).value;
+    const email = (document.getElementById("email") as HTMLInputElement).value;
+    const idDocument = (document.getElementById("idDocument") as HTMLInputElement).value;
+    const phone = (document.getElementById("phone") as HTMLInputElement).value;
+    const message = (document.getElementById("message") as HTMLInputElement).value;
+    const date = new Date().toLocaleString();
+
+    const newMessage = {
+      name,
+      lastName,
+      email,
+      message,
+      date,
+    };
+
+    const storedMessages = JSON.parse(localStorage.getItem("contactMessages") || "[]");
+    localStorage.setItem("contactMessages", JSON.stringify([storedMessages, newMessage]));
+    setMessages([storedMessages, newMessage]);
   };
 
   return (
     <div className="min-h-screen bg-gray-100">
       <header className="bg-[#66B5E5] dark:bg-gray-800 shadow-sm">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-    <div className="flex items-center">
-      <Image src="/logo.png" alt="Logo" width={40} height={40} />
-      <span className="ml-2 text-xl font-semibold text-white">
-        I.E Luis E. Pinto Sotomayor
-      </span>
-    </div>
-    <nav className="hidden md:block">
-      <ul className="flex space-x-4">
-        <li>
-          <a href="/leps" className="text-white dark:text-gray-300 hover:text-[#BF1F2C] dark:hover:text-white font-bold text-lg">
-            LEPS
-          </a>
-        </li>
-        <li>
-          <a href="/comunicados" className="text-white dark:text-gray-300 hover:text-[#BF1F2C] dark:hover:text-white font-bold text-lg">
-            Comunicados
-          </a>
-        </li>
-        <li>
-          <a href="/eventos" className="text-white dark:text-gray-300 hover:text-[#BF1F2C] dark:hover:text-white font-bold text-lg">
-            Eventos
-          </a>
-        </li>
-        <li>
-          <a href="/contacto" className="text-white dark:text-gray-300 hover:text-[#BF1F2C] dark:hover:text-white font-bold text-lg">
-            Contacto
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <MobileMenu />
-  </div>
-</header>
-
-      <div className="flex justify-around items-start py-12">
-        {/* Formulario de Eventos */}
-        <div className="bg-white p-6 rounded-xl shadow-md w-1/3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:row py-4 flex justify-between items-center">
+          <div className="flex items-center">
+            <Image src="/logo.png" alt="Logo" width={40} height={40} />
+            <span className="ml-2 text-xl font-semibold text-white">
+              I.E Luis E. Pinto Sotomayor
+            </span>
+          </div>
+          <nav className="hidden md:block">
+            <ul className="flex space-x-4">
+              <li>
+                <a href="/leps" className="text-white dark:text-gray-300 hover:text-[#BF1F2C] dark:hover:text-white font-bold text-lg">
+                  LEPS
+                </a>
+              </li>
+              <li>
+                <a href="/comunicados" className="text-white dark:text-gray-300 hover:text-[#BF1F2C] dark:hover:text-white font-bold text-lg">
+                  Comunicados
+                </a>
+              </li>
+              <li>
+                <a href="/eventos" className="text-white dark:text-gray-300 hover:text-[#BF1F2C] dark:hover:text-white font-bold text-lg">
+                  Eventos
+                </a>
+              </li>
+              <li>
+                <a href="/contacto" className="text-white dark:text-gray-300 hover:text-[#BF1F2C] dark:hover:text-white font-bold text-lg">
+                  Contacto
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <MobileMenu />
+        </div>
+      </header>
+      <div className="flex flex-col lg:flex-row justify-around items-start py-12 space-y-8 lg:space-y-0 lg:space-x-8">
+        <div className="bg-white p-6 rounded-xl shadow-md w-full lg:w-1/3">
           <h2 className="text-xl font-semibold mb-4">Nuevo Evento</h2>
           <form onSubmit={handleEventSubmit}>
             <input
@@ -130,8 +147,8 @@ export default function Profile() {
               type="date"
               value={eventDate}
               onChange={(e) => setEventDate(e.target.value)}
-             className="w-full p-2 border rounded mb-4"
-             required
+              className="w-full p-2 border rounded mb-4"
+              required
             />
             <input
               type="file"
@@ -146,8 +163,7 @@ export default function Profile() {
             </button>
           </form>
         </div>
-
-        <div className="bg-[#D5E7F2] p-8 rounded-xl shadow-lg w-1/3">
+        <div className="bg-[#D5E7F2] p-8 rounded-xl shadow-lg w-full lg:w-1/3 text-center">
           <div className="flex justify-center mb-6">
             <Image
               src={user.avatar}
@@ -175,8 +191,7 @@ export default function Profile() {
             Buzón de mensajes
           </button>
         </div>
-
-        <div className="bg-white p-6 rounded-xl shadow-md w-1/3">
+        <div className="bg-white p-6 rounded-xl shadow-md w-full lg:w-1/3">
           <h2 className="text-xl font-semibold mb-4">Nuevo Comunicado</h2>
           <form onSubmit={handleComunicadoSubmit}>
             <input
@@ -195,13 +210,13 @@ export default function Profile() {
               required
             />
             <input
-               placeholder="Fecha"
-               type="date"
-               value={comunicadoDate}
-               onChange={(e) => setComunicadoDate(e.target.value)}
-               className="w-full p-2 border rounded mb-4"
-               required
-             />
+              placeholder="Fecha"
+              type="date"
+              value={comunicadoDate}
+              onChange={(e) => setComunicadoDate(e.target.value)}
+              className="w-full p-2 border rounded mb-4"
+              required
+            />
             <input
               type="file"
               onChange={(e) => setComunicadoMedia(e.target.files?.[0] || null)}
@@ -216,16 +231,20 @@ export default function Profile() {
           </form>
         </div>
       </div>
-
       {isModalOpen && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-8 rounded-lg shadow-lg max-w-lg w-full">
             <h2 className="text-2xl font-semibold text-gray-900">Buzón de mensajes</h2>
             {messages.length > 0 ? (
-              <div className="mt-4 space-y-4">
+              <div className="mt-4 space-y-4 text-justify">
                 {messages.map((msg, index) => (
-                  <div key={index} className="bg-gray-100 p-4 rounded-md">
-                    <p>{msg}</p>
+                  <div key={index} className="bg-gray-100 p-4 rounded-md text-justify">
+                    <p className="font-bold">Nombre y Apellido: {msg.name} {msg.lastName}</p>
+                    <p className="text-gray-600 text-justify">Correo: {msg.email}</p>
+                    <p className="text-gray-600">DNI: {msg.documentId}</p>
+                    <p className="text-gray-600">Teléfono: {msg.phone}</p>
+                    <p>Mensaje: {msg.message}</p>
+                    <p className="text-sm text-gray-500">Enviado el: {msg.datetime}</p>
                   </div>
                 ))}
               </div>

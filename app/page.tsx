@@ -33,14 +33,6 @@ export default function Home() {
           </div>
           <nav className="hidden md:block">
             <ul className="flex space-x-4">
-            <li>
-                <a
-                  href="/leps"
-                  className="text-white dark:text-gray-300 hover:text-[#BF1F2C] dark:hover:text-white font-bold text-lg"
-                >
-                  LEPS
-                </a>
-              </li>
               <li>
                 <a
                   href="/comunicados"
@@ -115,7 +107,7 @@ export default function Home() {
           className="bg-gray-50 dark:bg-gray-800 py-16"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),url('/colegiopinto-2024.jpg')",
+              "linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),url('/colegiopinto.jpg')",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             backgroundPosition: "top",
@@ -129,9 +121,10 @@ export default function Home() {
             <p className="text-xl text-gray-200 dark:text-gray-300 mb-8">
               Formando líderes del mañana con educación de calidad
             </p>
-            <Button className="bg-[#3299D9] hover:bg-[#2477A8] text-white font-bold px-8 py-5 rounded-md shadow-lg">
+            <a href="/leps" 
+            className="bg-[#3299D9] hover:bg-[#2477A8] text-white font-bold px-8 py-5 rounded-md shadow-lg">
               Conoce más
-            </Button>
+            </a>
           </div>
 
             <div className="flex flex-col space-y-4">

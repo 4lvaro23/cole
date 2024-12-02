@@ -1,4 +1,5 @@
 "use client";
+import { MobileMenu } from "@/components/mobile-menu";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -26,7 +27,6 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-[#D5E7F2] flex flex-col">
-      {/* Barra de menú */}
       <header className="bg-[#3299D9] dark:bg-gray-800 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <div className="flex items-center">
@@ -62,6 +62,7 @@ export default function Login() {
                 Comunicados
             </a>
           </nav>
+         <MobileMenu/> 
         </div>
       </header>
 
