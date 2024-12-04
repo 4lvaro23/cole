@@ -3,7 +3,7 @@ import { MobileMenu } from "@/components/mobile-menu";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { CheckCircleIcon } from "@heroicons/react/24/solid"; // Importar ícono de check
+import { CheckCircleIcon } from "@heroicons/react/24/solid";
 
 export default function Login() {
   const [role, setRole] = useState<string | null>(null);
@@ -13,14 +13,14 @@ export default function Login() {
   const [code, setCode] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isLoading, setIsLoading] = useState(false); // Estado de la barra de carga
-  const [successMessage, setSuccessMessage] = useState<string | null>(null); // Mensaje de éxito
-  const [isCodeVerified, setIsCodeVerified] = useState(false); // Estado para verificar el código de seguridad
+  const [isLoading, setIsLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [isCodeVerified, setIsCodeVerified] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    setIsLoading(true); // Iniciar barra de carga
+    setIsLoading(true);
 
     setTimeout(() => {
       if (!email || !password) {
@@ -41,21 +41,30 @@ export default function Login() {
         setIsAuthenticated(false);
       }
       setIsLoading(false);
-    }, 5000); // Simulación de carga
+    }, 3000);
   };
 
   const handleVerifyCode = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (role === "Administrador" && code === "19542024") {
+      setSuccessMessage("Perfil autorizado");
       setIsCodeVerified(true);
-      router.push("/perfil/admin");
+      setTimeout(() => {
+        router.push("/perfil/admin");
+      }, 3000);
     } else if (role === "Técnico" && code === "12345678") {
+      setSuccessMessage("Perfil autorizado");
       setIsCodeVerified(true);
-      router.push("/perfil/tecnic");
+      setTimeout(() => {
+        router.push("/perfil/tecnic");
+      }, 3000);
     } else if (role === "Docente" && code === "10987654") {
+      setSuccessMessage("Perfil autorizado");
       setIsCodeVerified(true);
-      router.push("/perfil/docent");
+      setTimeout(() => {
+        router.push("/perfil/docent");
+      }, 3000);
     } else {
       setError("Código de seguridad incorrecto.");
     }
