@@ -45,7 +45,7 @@ export default function Contacto() {
 
   return (
     <div className="min-h-screen flex flex-col dark:bg-gray-900">
-      <header className="bg-[#3299D9] dark:bg-gray-800 shadow-sm">
+      <header className="bg-[#66B5E5] dark:bg-gray-800 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <div className="flex items-center">
             <Image src="/logo.png" alt="Logo" width={40} height={40} />
@@ -55,11 +55,6 @@ export default function Contacto() {
           </div>
           <nav className="hidden md:block">
             <ul className="flex space-x-4">
-              <li>
-                <a href="/leps" className="text-white dark:text-gray-300 hover:text-[#BF1F2C] dark:hover:text-white font-bold text-lg">
-                  LEPS
-                </a>
-              </li>
               <li>
                 <a href="/" className="text-white dark:text-gray-300 hover:text-[#BF1F2C] dark:hover:text-white font-bold text-lg">
                   Inicio
@@ -157,7 +152,7 @@ export default function Contacto() {
           </div>
         </div>
       </main>
-      <footer className="bg-[#3299D9] dark:bg-gray-800">
+      <footer className="bg-[#66B5E5] dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-white dark:text-gray-300 mb-4 md:mb-0 font-bold">

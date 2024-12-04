@@ -2,37 +2,52 @@ CREATE DATABASE IF NOT EXISTS colegio_db;
 
 USE colegio_db;
 
-CREATE TABLE IF NOT EXISTS usuarios (
-    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    contrasena VARCHAR(255) NOT NULL,
-    tipo_usuario ENUM('administrador', 'visitante') NOT NULL,
-    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    email VARCHAR(100) UNIQUE NOT NULL,
+    contraseña VARCHAR(255) NOT NULL,
+    rol ENUM('administrador', 'usuario') DEFAULT 'usuario',
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS eventos (
-    id_evento INT AUTO_INCREMENT PRIMARY KEY,
-    titulo VARCHAR(200) NOT NULL,
+INSERT INTO usuarios (nombre, email, contraseña, rol)
+VALUES ('Administrador', 'luisernestopinto1954@gmail.com', 'contraseña_segura_encriptada', 'administrador');
+
+CREATE TABLE comunicados (
+    id SERIAL PRIMARY KEY,
+    titulo VARCHAR(255) NOT NULL,
     descripcion TEXT NOT NULL,
-    fecha DATE NOT NULL,
-    archivo VARCHAR(255),
-    id_usuario INT,
-    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE SET NULL
+    fecha_publicacion DATE NOT NULL,
+    imagen_url VARCHAR(255),
+    creado_por INT REFERENCES usuarios(id),
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS comunicados (
-    id_comunicado INT AUTO_INCREMENT PRIMARY KEY,
-    titulo VARCHAR(200) NOT NULL,
+CREATE TABLE eventos (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
     descripcion TEXT NOT NULL,
-    fecha DATE NOT NULL,
-    archivo VARCHAR(255),
-    id_usuario INT,
-    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE SET NULL
+    fecha_evento DATE NOT NULL,
+    imagen_url VARCHAR(255),
+    creado_por INT REFERENCES usuarios(id),
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO usuarios (nombre, email, contrasena, tipo_usuario) 
-SELECT 'Administrador', 'luisernestopinto1954@gmail.com', MD5('LEPS_2024_1954'), 'administrador'
-WHERE NOT EXISTS (SELECT 1 FROM usuarios WHERE email = 'admin@colegio.com');
+CREATE TABLE mensajes (
+    id SERIAL PRIMARY KEY,
+    nombre_remitente VARCHAR(100) NOT NULL,
+    email_remitente VARCHAR(100) NOT NULL,
+    mensaje TEXT NOT NULL,
+    fecha_envio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    leido BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE perfil (
+    id SERIAL PRIMARY KEY,
+    usuario_id INT REFERENCES usuarios(id),
+    bio TEXT,
+    telefono VARCHAR(20),
+    direccion VARCHAR(255),
+    fecha_actualizacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
