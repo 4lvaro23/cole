@@ -12,7 +12,7 @@ CREATE TABLE usuarios (
 );
 
 INSERT INTO usuarios (nombre, email, contraseña, rol)
-VALUES ('Administrador', 'luisernestopinto1954@gmail.com', 'contraseña_segura_encriptada', 'administrador');
+VALUES ('Administrador', 'luisernestopinto1954@gmail.com', 'LEPS', 'administrador');
 
 CREATE TABLE comunicados (
     id SERIAL PRIMARY KEY,

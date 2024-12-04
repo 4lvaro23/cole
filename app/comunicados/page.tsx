@@ -157,7 +157,9 @@ export default function Comunicados() {
             </main>
             {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white dark:bg-gray-800 p-8 rounded-lg w-11/12 max-w-3xl">
+          <div className="bg-white dark:bg-gray-800 p-8 rounded-lg w-11/12 max-w-3xl overflow-y-auto"
+             style={{ maxHeight: '90vh' }}
+             >
             {activeComunicado === 0 && (
               <div>
                 <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">

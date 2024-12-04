@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
-export default function Profile() {
+export default function AdminitradorProfile() {
   const router = useRouter();
   const user = {
     name: "Administrador",
