@@ -99,11 +99,6 @@ export default function AdminitradorProfile() {
           <nav className="hidden md:block">
             <ul className="flex space-x-4">
               <li>
-                <a href="/leps" className="text-white dark:text-gray-300 hover:text-[#BF1F2C] dark:hover:text-white font-bold text-lg">
-                  LEPS
-                </a>
-              </li>
-              <li>
                 <a href="/comunicados" className="text-white dark:text-gray-300 hover:text-[#BF1F2C] dark:hover:text-white font-bold text-lg">
                   Comunicados
                 </a>
