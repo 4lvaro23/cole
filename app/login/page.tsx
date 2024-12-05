@@ -31,8 +31,8 @@ export default function Login() {
 
       if (
         (role === "Administrador" && email === "luisernestopinto1954@gmail.com" && password === "LEPS_2024") ||
-        (role === "Docente" && email === "docente@example.com" && password === "DOCENTE_2024") ||
-        (role === "Técnico" && email === "tecnico@example.com" && password === "TECNICO_2024")
+        (role === "Docente" && email === "docente@gmail.com" && password === "DOCENTE_2024") ||
+        (role === "Técnico" && email === "tecnico@gmail.com" && password === "TECNICO_2024")
       ) {
         setIsAuthenticated(true);
         setSuccessMessage("Perfil autorizado");
@@ -41,26 +41,26 @@ export default function Login() {
         setIsAuthenticated(false);
       }
       setIsLoading(false);
-    }, 3000);
+    }, 2000);
   };
 
   const handleVerifyCode = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (role === "Administrador" && code === "19542024") {
-      setSuccessMessage("Perfil autorizado");
+      setSuccessMessage("Usuario autorizado");
       setIsCodeVerified(true);
       setTimeout(() => {
         router.push("/perfil/admin");
       }, 3000);
     } else if (role === "Técnico" && code === "12345678") {
-      setSuccessMessage("Perfil autorizado");
+      setSuccessMessage("Usuario autorizado");
       setIsCodeVerified(true);
       setTimeout(() => {
         router.push("/perfil/tecnic");
       }, 3000);
     } else if (role === "Docente" && code === "10987654") {
-      setSuccessMessage("Perfil autorizado");
+      setSuccessMessage("Usuario autorizado");
       setIsCodeVerified(true);
       setTimeout(() => {
         router.push("/perfil/docent");
