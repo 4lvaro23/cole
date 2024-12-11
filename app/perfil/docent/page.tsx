@@ -99,9 +99,12 @@ const handleStudentClick = (studentId: number) => {
       ...student,
       grades: [
         { subject: "Matemáticas", score: 10 },
-        { subject: "Ciencias", score: 13 },
+        { subject: "Ciencia y Tecnologia", score: 13 },
         { subject: "Historia", score: 11 },
         { subject: "Inglés", score: 15 },
+        { subject: "Comunicación", score: 20 },
+        { subject: "Educación Fisica", score: 14 },
+        { subject: "DPCC", score: 17 },
       ],
     };
     setSelectedStudent(studentWithGrades);
