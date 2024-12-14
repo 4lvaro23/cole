@@ -128,30 +128,39 @@ export default function ConsultaAlumnos() {
                 </div>
               </form>
 
-              {result && (
+              {result && !result.error && (
                 <div className="mt-8">
-                  {result.error ? (
-                    <p className="text-red-500 font-bold">{result.error}</p>
-                  ) : (
-                    <div>
-                      <h3 className="text-lg font-bold text-gray-900 dark:text-white">Resultados:</h3>
-                      <ul className="list-disc list-inside text-gray-700 dark:text-gray-300">
-                        <li><strong>Notas:</strong> {result.notas.join(", ")}</li>
-                        <li><strong>Horarios:</strong> {result.horarios.join(", ")}</li>
-                        <li><strong>Asistencia:</strong> {result.asistencia}</li>
-                        <li><strong>Libreta:</strong>
-                          <div className="mt-4">
-                            <iframe
-                              src={result.libreta}
-                              width="100%"
-                              height="500px"
-                              className="border rounded-md"
-                            ></iframe>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                  )}
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">Resultados:</h3>
+                  <ul className="list-disc list-inside text-gray-700 dark:text-gray-300">
+                    {result.notas && (
+                      <li><strong>Notas:</strong> {result.notas.join(", ")}</li>
+                    )}
+                    {result.horarios && (
+                      <li><strong>Horarios:</strong> {result.horarios.join(", ")}</li>
+                    )}
+                    {result.asistencia && (
+                      <li><strong>Asistencia:</strong> {result.asistencia}</li>
+                    )}
+                    {result.libreta && (
+                      <li>
+                        <strong>Libreta:</strong>
+                        <div className="mt-4">
+                          <iframe
+                            src={result.libreta}
+                            width="100%"
+                            height="500px"
+                            className="border rounded-md"
+                          ></iframe>
+                        </div>
+                      </li>
+                    )}
+                  </ul>
+                </div>
+              )}
+
+              {result?.error && (
+                <div className="mt-8">
+                  <p className="text-red-500 font-bold">{result.error}</p>
                 </div>
               )}
             </div>
