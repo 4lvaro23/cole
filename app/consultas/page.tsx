@@ -3,15 +3,30 @@ import { MobileMenu } from "@/components/mobile-menu";
 import Image from "next/image";
 import { useState } from "react";
 
+interface StudentData {
+  notas: string[];
+  horarios: string[];
+  asistencia: string;
+  libreta: string;
+}
+
+interface SearchResult {
+  error?: string;
+  notas?: string[];
+  horarios?: string[];
+  asistencia?: string;
+  libreta?: string;
+}
+
 export default function ConsultaAlumnos() {
   const [dni, setDni] = useState("");
   const [nivel, setNivel] = useState("primaria");
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState<SearchResult | null>(null);
 
-  const handleSearch = (e) => {
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const mockDataPrimaria = {
+    const mockDataPrimaria: Record<string, StudentData> = {
       "77962416": {
         notas: ["Matemáticas: 18", "Historia: 16", "Ciencias: 19"],
         horarios: ["Lunes: 8am-12pm", "Miércoles: 10am-2pm"],
@@ -20,7 +35,7 @@ export default function ConsultaAlumnos() {
       },
     };
 
-    const mockDataSecundaria = {
+    const mockDataSecundaria: Record<string, StudentData> = {
       "74798823": {
         notas: ["Matemáticas: 15", "Historia: 14", "Física: 17"],
         horarios: ["Martes: 9am-1pm", "Jueves: 11am-3pm"],
