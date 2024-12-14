@@ -1,5 +1,4 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import { MobileMenu } from "@/components/mobile-menu";
 import { BookOpen, GraduationCap, Users, Clock, School, Search } from "lucide-react";
 import Image from "next/image";
@@ -13,11 +12,11 @@ export default function Home() {
     setSearchOpen(!searchOpen);
   };
 
-  const handleSearchChange = (e) => {
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
   };
 
-  const handleSearchSubmit = (e) => {
+  const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Búsqueda:", searchQuery); 
   };
@@ -238,8 +237,8 @@ export default function Home() {
                   Misión
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 text-justify">
-                  Lograr que todas y todos los estudiantes de la I.E. “Luis
-                  Ernesto Pinto Sotomayor” culminen la escolaridad
+                  Lograr que todas y todos los estudiantes de la I.E. &ldquo;Luis
+                  Ernesto Pinto Sotomayor&rdquo; culminen la escolaridad
                   satisfactoriamente en los niveles de inicial, primaria y
                   secundaria de la EBR, siendo competentes afianzando los
                   aprendizajes establecidos en el currículo nacional y alcancen

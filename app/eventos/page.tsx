@@ -110,6 +110,14 @@ export default function Eventos() {
     return false;
   });
 
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // ... your code
+  };
+
+  const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    // ... your code
+  };
+
   return (
     <div className="min-h-screen flex flex-col dark:bg-gray-900">
       <header className="bg-[#66B5E5] dark:bg-gray-800 shadow-sm">

@@ -4,6 +4,20 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
+interface ContactMessage {
+  name: string;
+  lastName: string;
+  email: string;
+  message: string;
+  date: string;
+}
+
+interface Report {
+  subject: string;
+  description: string;
+  technician: string;
+}
+
 export default function AdminitradorProfile() {
   const router = useRouter();
   const user = {
@@ -13,7 +27,7 @@ export default function AdminitradorProfile() {
   };
   const [visitCount, setVisitCount] = useState(0);
   const [activeSection, setActiveSection] = useState<string>("mensajes");
-  const [contactMessages, setContactMessages] = useState<any[]>([]);
+  const [contactMessages, setContactMessages] = useState<ContactMessage[]>([]);
   const [eventData, setEventData] = useState({ title: "", description: "", date: "", file: null });
   const [communiqueData, setCommuniqueData] = useState({ title: "", content: "", file: null });
 
@@ -46,13 +60,12 @@ export default function AdminitradorProfile() {
     setCommuniqueData({ title: "", content: "", file: null });
   };
 
-  const [messages, setMessages] = useState([]);
-  const [reports, setReports] = useState([]);
+  const [reports, setReports] = useState<Report[]>([]);
 
   useEffect(() => {
     const storedMessages = JSON.parse(localStorage.getItem("contactMessages") || "[]");
     const storedReports = JSON.parse(localStorage.getItem("reports") || "[]");
-    setMessages(storedMessages);
+    setContactMessages(storedMessages);
     setReports(storedReports);
   }, []);
 

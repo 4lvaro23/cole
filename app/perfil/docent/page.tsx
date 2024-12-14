@@ -5,6 +5,22 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import * as XLSX from "xlsx";
 
+interface Student {
+  id: number;
+  name: string;
+}
+
+interface StudentWithGrades extends Student {
+  grades: {
+    subject: string;
+    score: number;
+  }[];
+}
+
+interface AttendanceRecord {
+  [key: number]: string;
+}
+
 export default function DocenteProfile() {
   const router = useRouter();
   const user = {
@@ -14,7 +30,7 @@ export default function DocenteProfile() {
   };
   const [visitCount, setVisitCount] = useState(0);
   const [activeSection, setActiveSection] = useState<string>("estudiantes");
-  const [students, setStudents] = useState([
+  const [students] = useState<Student[]>([
     { id: 1, name: "Lucas García Pérez" },
     { id: 2, name: "María Fernández López" },
     { id: 3, name: "Sofía Martínez Torres" },
@@ -29,11 +45,11 @@ export default function DocenteProfile() {
     { id: 12, name: "Ana Beltrán Cordero" },
   ]);
 
-  const [attendance, setAttendance] = useState<any>(
+  const [attendance, setAttendance] = useState<AttendanceRecord>(
     students.reduce((acc, student) => {
       acc[student.id] = "No registrado";
       return acc;
-    }, {})
+    }, {} as AttendanceRecord)
   );
 
   useEffect(() => {
@@ -90,12 +106,12 @@ export default function DocenteProfile() {
   setSelectedMessageRecipient("");
   setMessageContent("");
 };
-const [selectedStudent, setSelectedStudent] = useState<any>(null);
+const [selectedStudent, setSelectedStudent] = useState<StudentWithGrades | null>(null);
 
 const handleStudentClick = (studentId: number) => {
   const student = students.find((s) => s.id === studentId);
   if (student) {
-    const studentWithGrades = {
+    const studentWithGrades: StudentWithGrades = {
       ...student,
       grades: [
         { subject: "Matemáticas", score: 10 },
