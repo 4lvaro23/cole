@@ -207,7 +207,7 @@ export default function AdminitradorProfile() {
           )}
           {activeSection === "reportes" && (
             <div className="bg-white p-6 rounded-xl shadow-md">
-              <h2 className="text-xl font-semibold mb-4">Reportes Llegados</h2>
+              <h2 className="text-xl font-semibold mb-4">Reportes Recibidos</h2>
               {reports.length > 0 ? (
                 <ul>
                   {reports.map((report, index) => (

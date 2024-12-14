@@ -33,6 +33,14 @@ export default function Home() {
           </div>
           <nav className="hidden md:block">
             <ul className="flex space-x-4">
+            <li>
+                <a
+                  href="/consultas"
+                  className="text-white dark:text-gray-300 hover:text-[#BF1F2C] dark:hover:text-white font-bold text-lg"
+                >
+                  Consultas Alumnos
+                </a>
+              </li>
               <li>
                 <a
                   href="/comunicados"
@@ -41,7 +49,6 @@ export default function Home() {
                   Comunicados
                 </a>
               </li>
-
               <li>
                 <a
                   href="/eventos"
