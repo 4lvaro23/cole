@@ -11,7 +11,16 @@ interface Comunicado {
   imageSrc?: string;
 }
 
-function Modal({ isOpen, onClose, title, content, imageSrc, date }) {
+interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  title: string;
+  content: string;
+  imageSrc?: string;
+  date: string;
+}
+
+function Modal({ isOpen, onClose, title, content, imageSrc, date }: ModalProps) {
   if (!isOpen) return null;
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
