@@ -75,7 +75,7 @@ export default function ConsultaAlumnos() {
         </div>
       </header>
 
-      <main className="flex-grow bg-[#D5E7F2] dark:bg-gray-800 py-16 center">
+      <main className="flex-grow bg-[#D5E7F2] dark:bg-gray-800 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-8">Consulta de Alumnos</h1>
           <div className="flex flex-col md:flex-row gap-6">
@@ -94,9 +94,9 @@ export default function ConsultaAlumnos() {
                     required
                   />
                 </div>
-                <div>sm font-medium text-gray-700 dark:text-gray-300">Nivel Educativo:</label>
+                <div>
+                  <label htmlFor="nivel" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Nivel Educativo:</label>
                   <select
-                  <label htmlFor="nivel" className="block text-
                     id="nivel"
                     value={nivel}
                     onChange={(e) => setNivel(e.target.value)}
@@ -125,14 +125,14 @@ export default function ConsultaAlumnos() {
                         <li><strong>Horarios:</strong> {result.horarios.join(", ")}</li>
                         <li><strong>Asistencia:</strong> {result.asistencia}</li>
                         <li><strong>Libreta:</strong>
-                        <div className="mt-4">
+                          <div className="mt-4">
                             <iframe
-                            src={result.libreta}
-                            width="100%"
-                            height="500px"
-                            className="border rounded-md"
+                              src={result.libreta}
+                              width="100%"
+                              height="500px"
+                              className="border rounded-md"
                             ></iframe>
-                        </div>
+                          </div>
                         </li>
                       </ul>
                     </div>
