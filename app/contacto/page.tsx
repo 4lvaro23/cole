@@ -11,7 +11,6 @@ export default function Contacto() {
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [datetime, setDatetime] = useState("");
-  const [messages, setMessages] = useState([]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,7 +35,6 @@ export default function Contacto() {
       setPhone("");
       setMessage("");
       setDatetime("");
-      setMessages(storedMessages);
       alert("Mensaje enviado exitosamente!");
     } else {
       alert("Por favor, complete todos los campos antes de enviar.");

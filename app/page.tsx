@@ -212,7 +212,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-1 gap-8">
               <div className="text-center">
                 <p className="text-gray-600 dark:text-gray-300 text-justify">
-                  Nosotros, en la "Institución Educativa Luis Ernesto Pinto Sotomayor", nos
+                  Nosotros, en la &ldquo;Institución Educativa Luis Ernesto Pinto Sotomayor&rdquo;, nos
                   enorgullecemos de ofrecer una educación integral y de calidad,
                   que fomente el desarrollo personal, académico y social de cada
                   uno de nuestros estudiantes. Somos una comunidad educativa

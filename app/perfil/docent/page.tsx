@@ -67,7 +67,7 @@ export default function DocenteProfile() {
   };
 
   const handleAttendanceChange = (studentId: number, value: string) => {
-    setAttendance((prevAttendance: any) => ({
+    setAttendance((prevAttendance: AttendanceRecord) => ({
       ...prevAttendance,
       [studentId]: value,
     }));

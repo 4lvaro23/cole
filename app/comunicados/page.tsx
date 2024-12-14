@@ -4,6 +4,13 @@ import Image from "next/image";
 import React, { useState } from "react";
 import jsPDF from "jspdf";
 
+interface Comunicado {
+  title: string;
+  content: string;
+  date: string;
+  imageSrc?: string;
+}
+
 function Modal({ isOpen, onClose, title, content, imageSrc, date }) {
   if (!isOpen) return null;
   return (
@@ -56,7 +63,7 @@ export default function Comunicados() {
     setActiveComunicado(null);
   };
 
-  const handleDownloadPDF = (comunicado: any) => {
+  const handleDownloadPDF = (comunicado: Comunicado) => {
     const doc = new jsPDF();
     doc.setFontSize(20);
     doc.text(comunicado.title, 10, 10);
@@ -66,7 +73,7 @@ export default function Comunicados() {
     doc.save(`${comunicado.title}.pdf`);
   };
 
-  const handleShare = (comunicado: any) => {
+  const handleShare = (comunicado: Comunicado) => {
     const url = window.location.href;
     const text = `Mira este comunicado: ${comunicado.title}\n${url}`;
     if (navigator.share) {

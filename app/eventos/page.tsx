@@ -4,6 +4,13 @@ import Image from "next/image";
 import React, { useState } from "react";
 import jsPDF from "jspdf";
 
+interface Evento {
+  title: string;
+  content: string;
+  date: string;
+  imageSrc?: string;
+}
+
 function Modal({ isOpen, onClose, title, content, imageSrc, date }) {
   if (!isOpen) return null;
   return (
@@ -56,7 +63,7 @@ export default function Eventos() {
     setActiveEvent(null);
   };
 
-  const handleDownloadPDF = (evento: any) => {
+  const handleDownloadPDF = (evento: Evento) => {
     const doc = new jsPDF();
     doc.setFontSize(20);
     doc.text(evento.title, 10, 10);
@@ -66,7 +73,7 @@ export default function Eventos() {
     doc.save(`${evento.title}.pdf`);
   };
 
-  const handleShare = (evento: any) => {
+  const handleShare = (evento: Evento) => {
     const url = window.location.href;
     const text = `Mira este evento: ${evento.title}\n${url}`;
     if (navigator.share) {
@@ -109,14 +116,6 @@ export default function Eventos() {
     if (filter === "relevance") return evento.relevance === "high";
     return false;
   });
-
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // ... your code
-  };
-
-  const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    // ... your code
-  };
 
   return (
     <div className="min-h-screen flex flex-col dark:bg-gray-900">
