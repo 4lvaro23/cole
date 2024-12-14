@@ -18,6 +18,19 @@ interface Report {
   technician: string;
 }
 
+interface EventData {
+  title: string;
+  description: string;
+  date: string;
+  file: File | null;
+}
+
+interface CommuniqueData {
+  title: string;
+  content: string;
+  file: File | null;
+}
+
 export default function AdminitradorProfile() {
   const router = useRouter();
   const user = {
@@ -28,8 +41,17 @@ export default function AdminitradorProfile() {
   const [visitCount, setVisitCount] = useState(0);
   const [activeSection, setActiveSection] = useState<string>("mensajes");
   const [contactMessages, setContactMessages] = useState<ContactMessage[]>([]);
-  const [eventData, setEventData] = useState({ title: "", description: "", date: "", file: null });
-  const [communiqueData, setCommuniqueData] = useState({ title: "", content: "", file: null });
+  const [eventData, setEventData] = useState<EventData>({ 
+    title: "", 
+    description: "", 
+    date: "", 
+    file: null 
+  });
+  const [communiqueData, setCommuniqueData] = useState<CommuniqueData>({ 
+    title: "", 
+    content: "", 
+    file: null 
+  });
 
 
   useEffect(() => {
@@ -68,6 +90,15 @@ export default function AdminitradorProfile() {
     setContactMessages(storedMessages);
     setReports(storedReports);
   }, []);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, type: 'event' | 'communique') => {
+    const file = e.target.files?.[0] || null;
+    if (type === 'event') {
+      setEventData(prev => ({ ...prev, file }));
+    } else {
+      setCommuniqueData(prev => ({ ...prev, file }));
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -170,7 +201,7 @@ export default function AdminitradorProfile() {
                   <input
                     type="file"
                     accept="image/*,video/*"
-                    onChange={(e) => setEventData({ ...eventData, file: e.target.files?.[0] || null })}
+                    onChange={(e) => handleFileChange(e, 'event')}
                     className="w-full"
                   />
                 </div>
@@ -208,7 +239,7 @@ export default function AdminitradorProfile() {
                   <input
                     type="file"
                     accept="image/*,video/*"
-                    onChange={(e) => setCommuniqueData({ ...communiqueData, file: e.target.files?.[0] || null })}
+                    onChange={(e) => handleFileChange(e, 'communique')}
                     className="w-full"
                   />
                 </div>
