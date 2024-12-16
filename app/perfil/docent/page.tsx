@@ -146,9 +146,10 @@ const handleStudentClick = (studentId: number) => {
 };
 const [requestType, setRequestType] = useState<string>("");
 const [requestDescription, setRequestDescription] = useState<string>("");
+const [requestRecipient, setRequestRecipient] = useState<string>("");
 
 const handleSendRequest = () => {
-  if (!requestType || !requestDescription.trim()) {
+  if (!requestType || !requestDescription.trim() || !requestRecipient) {
     alert("Por favor, completa todos los campos.");
     return;
   }
@@ -156,11 +157,13 @@ const handleSendRequest = () => {
   console.log("Solicitud enviada:", {
     tipo: requestType,
     descripcion: requestDescription,
+    destinatario: requestRecipient
   });
 
   alert("Tu solicitud ha sido enviada exitosamente.");
   setRequestType("");
   setRequestDescription("");
+  setRequestRecipient("");
 };
 
   return (
@@ -317,6 +320,21 @@ const handleSendRequest = () => {
       }}
       className="space-y-4"
     >
+      <div>
+        <label htmlFor="request-recipient" className="block text-sm font-medium text-gray-700">
+          Destinatario
+        </label>
+        <select
+          id="request-recipient"
+          value={requestRecipient}
+          onChange={(e) => setRequestRecipient(e.target.value)}
+          className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
+        >
+          <option value="">-- Seleccionar --</option>
+          <option value="administrador">Administrador</option>
+          <option value="tecnico">Técnico</option>
+        </select>
+      </div>
       <div>
         <label htmlFor="request-type" className="block text-sm font-medium text-gray-700">
           Tipo de Solicitud
