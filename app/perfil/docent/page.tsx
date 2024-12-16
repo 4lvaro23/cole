@@ -3,7 +3,7 @@ import { MobileMenu } from "@/components/mobile-menu";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import * as XLSX from "xlsx";
+import jsPDF from "jspdf";
 
 interface Student {
   id: number;
@@ -78,16 +78,34 @@ export default function DocenteProfile() {
     alert("Asistencia registrada correctamente.");
   };
 
-  const downloadExcel = () => {
-    const data = students.map((student) => ({
-      Estudiante: student.name,
-      Estado: attendance[student.id] || "No registrado",
-    }));
+  const downloadPDF = () => {
+    const doc = new jsPDF();
+    
+    // Add title
+    doc.setFontSize(16);
+    doc.text("Registro de Asistencia", 20, 20);
+    
+    // Add date
+    doc.setFontSize(12);
+    const today = new Date().toLocaleDateString();
+    doc.text(`Fecha: ${today}`, 20, 30);
+    
+    // Add content
+    doc.setFontSize(12);
+    let yPosition = 40;
+    
+    students.forEach((student) => {
+      if (yPosition > 270) {
+        doc.addPage();
+        yPosition = 20;
+      }
+      const status = attendance[student.id] || "No registrado";
+      doc.text(`${student.name}: ${status}`, 20, yPosition);
+      yPosition += 10;
+    });
 
-    const worksheet = XLSX.utils.json_to_sheet(data);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Asistencia");
-    XLSX.writeFile(workbook, "asistencia_estudiantes.xlsx");
+    // Save the PDF
+    doc.save("asistencia_estudiantes.pdf");
   };
   const [selectedMessageRecipient, setSelectedMessageRecipient] = useState<number | "">("");
   const [messageContent, setMessageContent] = useState<string>("");
@@ -202,7 +220,7 @@ const handleSendRequest = () => {
                 </ul>
                 <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition">Registrar Asistencia</button>
               </form>
-              <button onClick={downloadExcel} className="mt-6 w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition">Descargar Excel</button>
+              <button onClick={downloadPDF} className="mt-6 w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition">Descargar PDF</button>
             </div>
           )}
           {activeSection === "mensajes" && (
